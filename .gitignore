@@ -1,0 +1,28 @@
+# secrets and environments — never commit
+.env
+.env.*
+.venv/
+venv/
+# python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+# tooling
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+# outputs
+squad1_demo_out/
+gpu_suite_results.json
+*.stl
+!tests/data/*.stl
+# OS / editors
+.DS_Store
+__MACOSX/
+.idea/
+.vscode/

@@ -1,0 +1,191 @@
+{
+  "darcy_analytic": {
+    "linear_p_max_abs_residual": 6.128431095930864e-14,
+    "p_eq_x2_mean_residual (exact 2)": 1.9999999999999978,
+    "variable_k_exact_solution_max_scaled_residual": 1.514064259686505e-06
+  },
+  "domain_library_residuals": {
+    "diffusion_decay": {
+      "data_residual_rms": 1.803963390587621e-08,
+      "noise_residual_rms": 0.1878194423301916
+    },
+    "laplace_heat": {
+      "data_residual_rms": 0.00031308513734679995,
+      "noise_residual_rms": 1.1375478852098404
+    },
+    "navier_stokes": {
+      "data_residual_rms": 7.24349406624765e-05,
+      "noise_residual_rms": 0.17538483583798778
+    },
+    "reaction_diffusion": {
+      "data_residual_rms": 7.807860741491833e-09,
+      "noise_residual_rms": 0.08011688898866122
+    },
+    "stress_equilibrium": {
+      "data_residual_rms": 6.592526924593858e-05,
+      "noise_residual_rms": 0.014920490374644182
+    },
+    "thermal_advection": {
+      "data_residual_rms": 7.777457644385553e-09,
+      "noise_residual_rms": 0.08284277056159799
+    }
+  },
+  "projection_comparison_16x16": {
+    "0.02": {
+      "loss_before": 0.009501053281672087,
+      "gradient": {
+        "loss_after": 3.5558634055615986e-07,
+        "rel_l2_to_truth_p": 0.004320447186019714,
+        "seconds": 0.5774570999783464
+      },
+      "residual_weighted": {
+        "loss_after": 1.1143439968548612e-06,
+        "rel_l2_to_truth_p": 0.004763033421684558,
+        "seconds": 0.5102251999778673
+      },
+      "gauss_newton": {
+        "loss_after": 1.031499518846357e-18,
+        "rel_l2_to_truth_p": 0.00020695090024753214,
+        "seconds": 0.07014039997011423
+      },
+      "solve": {
+        "loss_after": 1.2894453201909585e-31,
+        "rel_l2_to_truth_p": 0.0,
+        "seconds": 0.002273400023113936
+      }
+    },
+    "0.1": {
+      "loss_before": 0.22546037965094526,
+      "gradient": {
+        "loss_after": 9.148136440689231e-06,
+        "rel_l2_to_truth_p": 0.02074601556889943,
+        "seconds": 0.49719580000964925
+      },
+      "residual_weighted": {
+        "loss_after": 3.33003579565485e-05,
+        "rel_l2_to_truth_p": 0.024377061575112685,
+        "seconds": 0.4978052999940701
+      },
+      "gauss_newton": {
+        "loss_after": 5.40163299886588e-23,
+        "rel_l2_to_truth_p": 0.000934422258136503,
+        "seconds": 0.07968999998411164
+      },
+      "solve": {
+        "loss_after": 1.2894453201909585e-31,
+        "rel_l2_to_truth_p": 0.0,
+        "seconds": 0.002183399978093803
+      }
+    },
+    "0.3": {
+      "loss_before": 2.1716370816618524,
+      "gradient": {
+        "loss_after": 0.00010364839180658301,
+        "rel_l2_to_truth_p": 0.08222625789394926,
+        "seconds": 0.47789670003112406
+      },
+      "residual_weighted": {
+        "loss_after": 0.00030140118208236543,
+        "rel_l2_to_truth_p": 0.09252448714028527,
+        "seconds": 0.5303763999836519
+      },
+      "gauss_newton": {
+        "loss_after": 7.523927769884881e-26,
+        "rel_l2_to_truth_p": 0.00866431817666552,
+        "seconds": 0.16345599998021498
+      },
+      "solve": {
+        "loss_after": 1.2894453201909585e-31,
+        "rel_l2_to_truth_p": 0.0,
+        "seconds": 0.0017090999754145741
+      }
+    }
+  },
+  "cooling_plate": {
+    "energy_balance_error_random_layouts_max": 3.765308065339922e-14,
+    "before": {
+      "max_temperature_C": 41.94136578052325,
+      "pressure_drop_kPa": 16.067871621741325,
+      "relative_weight": 0.8333333333333334,
+      "flow_residual": 4.963195846259447e-15,
+      "energy_balance_error": 9.761909799029427e-15,
+      "temperature_ok": true,
+      "pressure_drop_ok": false,
+      "structure_ok": true,
+      "constraints_satisfied": false,
+      "targets": {
+        "max_temperature_C": 45.0,
+        "pressure_drop_kPa": 10.0
+      }
+    },
+    "after": {
+      "max_temperature_C": 37.3783001970233,
+      "pressure_drop_kPa": 4.760613827491557,
+      "relative_weight": 0.26388888888888884,
+      "flow_residual": 1.6539239741024083e-14,
+      "energy_balance_error": 5.456210298386091e-14,
+      "temperature_ok": true,
+      "pressure_drop_ok": true,
+      "structure_ok": true,
+      "constraints_satisfied": true,
+      "targets": {
+        "max_temperature_C": 45.0,
+        "pressure_drop_kPa": 10.0
+      }
+    },
+    "same_area_different_layout": {
+      "straight": {
+        "max_temperature_C": 36.34895800672228,
+        "pressure_drop_kPa": 8.04356514788169,
+        "relative_weight": 0.6666666666666667,
+        "flow_residual": 7.436214751717163e-15,
+        "energy_balance_error": 7.495752167111882e-15,
+        "temperature_ok": true,
+        "pressure_drop_ok": true,
+        "structure_ok": true,
+        "constraints_satisfied": true,
+        "targets": {
+          "max_temperature_C": 45.0,
+          "pressure_drop_kPa": 10.0
+        }
+      },
+      "shuffled_same_pixels": {
+        "max_temperature_C": 35.1031473269597,
+        "pressure_drop_kPa": 3405.79224997419,
+        "relative_weight": 0.6666666666666667,
+        "flow_residual": 3.6892700079215e-15,
+        "energy_balance_error": 4.434173206391278e-12,
+        "temperature_ok": true,
+        "pressure_drop_ok": false,
+        "structure_ok": true,
+        "constraints_satisfied": false,
+        "targets": {
+          "max_temperature_C": 45.0,
+          "pressure_drop_kPa": 10.0
+        }
+      }
+    },
+    "_perm_checksum": 165600
+  },
+  "geometry": {
+    "lattice_bcc_cube_2x2x2": {
+      "unique_struts": 118,
+      "relative_density_union": 0.22716600000000006,
+      "naive_sum_of_cylinders": 0.27501659380826704,
+      "components": 1,
+      "watertight": true
+    },
+    "mbb_60x20_vf0.5": {
+      "compliance": 218.80096787931814,
+      "iterations": 126,
+      "converged": true,
+      "volume": 0.4999998131522567,
+      "grayness": 0.268968827363822
+    },
+    "cantilever_vs_timoshenko_beam_ratio": 0.9925983595282851
+  },
+  "environment": {
+    "torch": "2.12.1+cpu",
+    "numpy": "2.4.4"
+  }
+}
