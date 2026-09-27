@@ -1,4 +1,7 @@
-"""Run the device benchmark suite (G1-G8) and write JSON.  Usage:  python scripts/run_gpu_suite.py [--smoke] [--out results.json]"""
+"""Run the device benchmark suite (G1-G8) and write JSON.
+
+Usage:  python scripts/run_gpu_suite.py [--smoke] [--out results.json]
+"""
 
 import sys
 

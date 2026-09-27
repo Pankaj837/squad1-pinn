@@ -1,0 +1,122 @@
+[
+  {
+    "step": "chemistry_fit_and_discover (data/chemistry/*.parquet)",
+    "status": "ok",
+    "seconds": 83.92730909999227,
+    "train_rows_used": 2796,
+    "surrogate_oob_rmse": {
+      "thermal_conductivity": 20.9457,
+      "density": 801.3449,
+      "specific_heat": 48.0521,
+      "melting_point": 246.7016
+    },
+    "cases": [
+      {
+        "target": {
+          "thermal_conductivity": 6.070305451201744,
+          "density": 11266.848017573646,
+          "specific_heat": 198.62474618640448,
+          "melting_point": 703.6374904523342
+        },
+        "reported_target_error": 0.13807617925335858,
+        "true_target_error_vs_ground_truth": 0.03229567627009726,
+        "target_satisfied": false,
+        "surrogate_reliable": true,
+        "physically_valid": true
+      },
+      {
+        "target": {
+          "thermal_conductivity": 145.795212787252,
+          "density": 4601.285374116573,
+          "specific_heat": 496.19619435314524,
+          "melting_point": 843.7433951780313
+        },
+        "reported_target_error": 0.11012518644238735,
+        "true_target_error_vs_ground_truth": 0.057448926611928484,
+        "target_satisfied": false,
+        "surrogate_reliable": true,
+        "physically_valid": true
+      },
+      {
+        "target": {
+          "thermal_conductivity": 266.05655287276716,
+          "density": 6253.716757860883,
+          "specific_heat": 570.985144034738,
+          "melting_point": 1223.0471739574368
+        },
+        "reported_target_error": 0.11957081821812487,
+        "true_target_error_vs_ground_truth": 0.03128828173559224,
+        "target_satisfied": false,
+        "surrogate_reliable": true,
+        "physically_valid": true
+      },
+      {
+        "target": {
+          "thermal_conductivity": 58.86572767237662,
+          "density": 5736.848343712992,
+          "specific_heat": 638.1918051371731,
+          "melting_point": 2465.676952542192
+        },
+        "reported_target_error": 0.09620138199355795,
+        "true_target_error_vs_ground_truth": 0.03012376297437889,
+        "target_satisfied": true,
+        "surrogate_reliable": true,
+        "physically_valid": true
+      },
+      {
+        "target": {
+          "thermal_conductivity": 206.6764057319858,
+          "density": 7670.227087062973,
+          "specific_heat": 520.8822036633246,
+          "melting_point": 1618.4507131365403
+        },
+        "reported_target_error": 0.09933549671633371,
+        "true_target_error_vs_ground_truth": 0.0489131295204366,
+        "target_satisfied": false,
+        "surrogate_reliable": true,
+        "physically_valid": true
+      }
+    ]
+  },
+  {
+    "step": "materials_lookup (data/materials/*.parquet)",
+    "status": "ok",
+    "seconds": 0.04831659997580573,
+    "raw_rows": 612,
+    "invalid_rows_present": 19,
+    "stiffest_material": {
+      "material_id": "synth-mat-000523",
+      "formula": "HfC0.63Zr0.37",
+      "E_gpa": 732.7146980582293,
+      "nu": 0.33738214623769897,
+      "density_g_cm3": 4.53149063974692
+    },
+    "nearest_to_200GPa": {
+      "material_id": "synth-mat-000117",
+      "formula": "Ta0.51Cr0.49",
+      "E_gpa": 199.7307298619723,
+      "nu": 0.3650934817592567,
+      "density_g_cm3": 4.485006165897926
+    },
+    "lookup_by_formula_matches_stiffest": true
+  },
+  {
+    "step": "conditioning_to_tokens (CondSpec -> ConditioningToTokens)",
+    "status": "ok",
+    "seconds": 10.133146599982865,
+    "cond_vec_shape": [
+      1,
+      36
+    ],
+    "cond_vec_finite": true,
+    "token_embeddings_shape": [
+      1,
+      8,
+      64
+    ],
+    "token_ids_shape": [
+      1,
+      8
+    ]
+  }
+]

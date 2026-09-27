@@ -65,12 +65,19 @@ def projection_comparison() -> dict:
         bad[:, 1] += noise * torch.randn(4, H, H, generator=g, dtype=torch.float64)
         phys = DarcyPhysics()
         row = {"loss_before": float(phys.loss(bad, h).mean())}
-        for name, kw in (("gradient", {"max_iters": 300}), ("residual_weighted", {"max_iters": 300}), ("gauss_newton", {}), ("solve", {})):
+        for name, kw in (
+            ("gradient", {"max_iters": 300}),
+            ("residual_weighted", {"max_iters": 300}),
+            ("gauss_newton", {}),
+            ("solve", {}),
+        ):
             t0 = time.perf_counter()
             x, info = get_projector(name, **kw).project(bad, phys, h)
             row[name] = {
                 "loss_after": float(info["loss_after"].mean()),
-                "rel_l2_to_truth_p": float(((x[:, 1] - truth[:, 1]).flatten(1).norm(dim=1) / truth[:, 1].flatten(1).norm(dim=1)).mean()),
+                "rel_l2_to_truth_p": float(
+                    ((x[:, 1] - truth[:, 1]).flatten(1).norm(dim=1) / truth[:, 1].flatten(1).norm(dim=1)).mean()
+                ),
                 "seconds": time.perf_counter() - t0,
             }
         rows[str(noise)] = row
@@ -85,12 +92,16 @@ def cooling() -> dict:
     for c in (5, 17):
         k[:, :, c : c + 2] = 50.0
     cand = CandidateDesign("cooling_plate", DarcyPhysics().solve(k, h).float(), "physical", h).to_model()
-    out, info = optimize_layout(pl, cand, LayoutConfig(steps=150))
+    _out, info = optimize_layout(pl, cand, LayoutConfig(steps=150))
     perm = torch.randperm(H * H, generator=torch.Generator().manual_seed(0))
     shuffled = layout4(H)
     straight = layout4(H, shuffled=False)
     return {
-        "energy_balance_error_random_layouts_max": float(pl.solve(torch.exp(1.5 * torch.randn(3, H, H, dtype=torch.float64)).clamp(0.02, 50), h)["energy_balance_error"].max()),
+        "energy_balance_error_random_layouts_max": float(
+            pl.solve(torch.exp(1.5 * torch.randn(3, H, H, dtype=torch.float64)).clamp(0.02, 50), h)[
+                "energy_balance_error"
+            ].max()
+        ),
         "before": info["report_before"][0],
         "after": info["report_after"][0],
         "same_area_different_layout": {
@@ -104,7 +115,7 @@ def cooling() -> dict:
 def layout4(H: int, shuffled: bool = True) -> torch.Tensor:
     k = torch.full((1, H, H), 0.02, dtype=torch.float64)
     for i in range(4):
-        c = int(round((i + 0.5) * H / 4 - 1))
+        c = round((i + 0.5) * H / 4 - 1)
         k[:, :, c : c + 2] = 50.0
     if shuffled:
         perm = torch.randperm(H * H, generator=torch.Generator().manual_seed(0))
@@ -123,8 +134,20 @@ def geometry() -> dict:
     L, hh = 60.0, 10.0
     beam = L**3 / (3 * hh**3 / 12) + L / (5 / 6 * (1 / (2 * 1.3)) * hh)
     return {
-        "lattice_bcc_cube_2x2x2": {"unique_struts": len(g.struts), "relative_density_union": rep.relative_density, "naive_sum_of_cylinders": naive, "components": rep.components, "watertight": st.watertight},
-        "mbb_60x20_vf0.5": {"compliance": r.compliance[-1], "iterations": r.iterations, "converged": r.converged, "volume": r.volume, "grayness": r.grayness},
+        "lattice_bcc_cube_2x2x2": {
+            "unique_struts": len(g.struts),
+            "relative_density_union": rep.relative_density,
+            "naive_sum_of_cylinders": naive,
+            "components": rep.components,
+            "watertight": st.watertight,
+        },
+        "mbb_60x20_vf0.5": {
+            "compliance": r.compliance[-1],
+            "iterations": r.iterations,
+            "converged": r.converged,
+            "volume": r.volume,
+            "grayness": r.grayness,
+        },
         "cantilever_vs_timoshenko_beam_ratio": c / beam,
     }
 
@@ -133,7 +156,11 @@ def pinn() -> dict:
     from squad1.pinn import Heat1D, TrainerConfig, train
 
     r = train(Heat1D(), cfg=TrainerConfig(adam_steps=2500, lbfgs_steps=15, seed=0, log_every=500))
-    return {"heat1d_rel_l2_vs_exact": r.rel_l2, "seconds": r.seconds, "note": "original framework path on the same problem: rel-L2 0.970 with 'PASSED VALIDATION'"}
+    return {
+        "heat1d_rel_l2_vs_exact": r.rel_l2,
+        "seconds": r.seconds,
+        "note": "original framework path on the same problem: rel-L2 0.970 with 'PASSED VALIDATION'",
+    }
 
 
 def main() -> None:

@@ -24,13 +24,32 @@ generators, PCFM projection, cooling-plate POC, topology/lattice, PINN training)
 ## Install
 
 ```bash
-pip install -e ".[dev]"        # torch, numpy, scipy + pandas/sklearn/pyarrow/trimesh/pytest/ruff/mypy
-squad1 selftest                # 6 fast sanity checks, no data needed
-squad1 demo --out demo_out     # trains a toy generator, samples, projects, writes a design package
-python -m pytest               # full suite (≈ 4–6 min on CPU, 97 % line coverage)
+pip install -e ".[dev]"                      # torch, numpy, scipy + pandas/sklearn/pyarrow/trimesh/pytest/ruff/mypy
+squad1 selftest                              # 6 fast sanity checks, no data needed
+python scripts/generate_synthetic_data.py    # writes data/chemistry, data/materials (synthetic — see data/README.md)
+python scripts/verify_end_to_end.py          # runs the real pipeline against that data -> reports/
+squad1 demo --out demo_out                   # trains a toy generator, samples, projects, writes a design package
+python -m pytest                             # full suite (≈ 4–6 min on CPU, 97 % line coverage)
 ```
 Python ≥ 3.10. Verified here on Python 3.13 / torch 2.12 (CPU). GPU code paths are exercised by `squad1 gpu-suite` (see
-`docs/HANDOFF_GPU.md`) — they have **not** been run on a GPU yet.
+`docs/INTEGRATION.md` §5) — they have **not** been run on a GPU yet.
+
+## Repository layout
+
+```
+squad1_repo/
+├─ src/squad1/       source code, organised by module (contracts, physics, projection, generation,
+│                    conditioning, encoding, applications, geometry, pinn, pipeline, utils)
+├─ tests/            pytest suite: unit/ (per-module) + integration/ (end-to-end, CLI, docs, synthetic data)
+├─ data/             synthetic chemistry + materials datasets and how they were generated (data/README.md)
+├─ reports/          generated verification run output (reports/README.md)
+├─ scripts/          generate_synthetic_data.py, verify_end_to_end.py, collect_evidence.py, run_gpu_suite.py
+├─ docs/             INTERFACES / INTEGRATION / DECISIONS / VERIFICATION / LITERATURE
+├─ archive/          nothing orphaned in this repo (clean rewrite); points to where the superseded
+│                    original code is kept for traceability (archive/README.md)
+├─ .github/workflows/ci.yml   lint + mypy + tests (3.10-3.13) + optional self-hosted GPU job
+└─ README.md / CHANGELOG.md / CONTRIBUTING.md / pyproject.toml / .pre-commit-config.yaml
+```
 
 ## What is inside
 
